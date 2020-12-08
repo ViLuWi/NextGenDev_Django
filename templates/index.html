@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div>
+        <h1>Welcome {{ request.user }}</h1>
+        {% for post in posts %}
+            <div>
+                <h3>
+                    {{ post.title }}
+                    {% if request.user == post.author %}
+                        <a href="{% url 'edit' post.id %}">Edit</a>
+                        <a href="{% url 'delete' post.id %}">Delete</a>
+                    {% endif %}
+                </h3>
+                {% if post.content %}
+                    <p>{{ post.content }}</p>
+                {% endif %}
+                {% if post.image %}
+                    <img src="{{ post.image.url }}" width="300">
+                {% endif %}
+            </div>
+            <hr>
+        {% endfor %}
+
+    </div>
+{% endblock %}

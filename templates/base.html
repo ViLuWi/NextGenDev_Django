@@ -1,0 +1,30 @@
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+<nav>
+    <a href="{% url 'index' %}">home</a>
+    <a href="{% url 'post' %}">new post</a>
+    <a href="{% url 'login' %}">login</a>
+    <a href="{% url 'logout' %}">logout</a>
+</nav>
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'error' %}
+            <h2 style="color: red;">
+                {{ message }}
+            </h2>
+        {% else %}
+            <h2 style="color: green;">
+                {{ message }}
+            </h2>
+        {% endif %}
+    {% endfor %}
+
+{% endif %}
+{% block content %}
+
+{% endblock %}
+</body>
+</html>
